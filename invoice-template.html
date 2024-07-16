@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+</head>
+<body>
+    <style type="text/css">
+        body {
+            font-family: sans-serif;
+            color: #000;
+            border-color: #000;
+            page-break-inside: avoid;
+        }
+        /* #invoice-POS {
+          padding: 2mm;
+        margin: 0 auto;
+        max-width: 500px;
+        background: #FFF;
+        box-shadow: 0 0 10px #ccc;
+    } */
+    #invoice-POS ::selection {
+      background: #000;
+      color: #FFF;
+    }
+    #invoice-POS ::moz-selection {
+      background: #000;
+      color: #FFF;
+    }
+    #invoice-POS h1 {
+      font-size: 1.5em;
+      color: #222;
+    }
+    #invoice-POS h2 {
+      font-size: 12px;
+    }
+    #invoice-POS h3 {
+      font-size: 1.2em;
+      font-weight: 300;
+      line-height: 2em;
+    }
+    #invoice-POS p {
+      font-size: 0.7em;
+      color: #000;
+      line-height: 1.2em;
+    }
+    #invoice-POS #top, #invoice-POS #mid, #invoice-POS #bot {
+      /* Targets all id with 'col-' */
+      border-bottom: 1px dashed #000;
+    }
+    /*#invoice-POS #top {
+      min-height: 100px;
+    }*/
+    #invoice-POS #mid {
+      min-height: 80px;
+    }
+    #invoice-POS #bot {
+      min-height: 50px;
+    }
+    #invoice-POS #top .logo {
+      height: 60px;
+      width: 60px;
+      background: url(http://michaeltruong.ca/images/logo1.png) no-repeat;
+      background-size: 60px 60px;
+    }
+    #invoice-POS .clientlogo {
+      float: left;
+      height: 60px;
+      width: 60px;
+      background: url(http://michaeltruong.ca/images/client.jpg) no-repeat;
+      background-size: 60px 60px;
+      border-radius: 50px;
+    }
+    #invoice-POS .info {
+      display: block;
+      margin-left: 0;
+    }
+    #invoice-POS .title {
+      float: right;
+    }
+    #invoice-POS .title p {
+      text-align: right;
+    }
+    #invoice-POS table {
+      width: 100%;
+      border-collapse: collapse;
+      color: #000;
+      border-color: #000;
+    }
+    #invoice-POS .tabletitle {
+      font-size: 0.5em;
+    /*  background: #EEE;*/
+      border-bottom: 1px dashed #000;
+    }
+    #invoice-POS .service {
+      border-bottom: 1px solid #EEE;
+    }
+    #invoice-POS .item {
+      width: 65mm;
+    /*  padding: 5px;*/
+    }
+    #invoice-POS .itemtext {
+      font-size: 12px;
+    }
+    #invoice-POS #legalcopy {
+      margin-top: 5mm;
+    }
+    .Qty {
+        min-width: 12mm;
+        text-align: center;
+    }
+    .RateTop {
+        width: 15mm;
+    }
+    .Amount {
+        width: 15mm;
+    }
+    .tabletitle td {
+        padding: 5px;
+    }
+    .TableOrderDetails {
+        padding: 6px 0px;
+        margin: 10px 0px;
+        font-size: 12px;
+        line-height: 20px;
+    }
+    .text-center {
+        text-align: center;
+    }
+    .linsbar td {
+        padding: 10px 0px;
+    }
+    .linsbar tr {
+        border-bottom: 1px dashed #000;
+        border-top: 1px dashed #000;
+    }
+    .legal {
+        font-size: 16px !important;
+        text-align: center;
+        line-height: 25px !important;
+        color: #000 !important;
+    }
+
+    .mw-150  {
+      min-width: 150px;
+    }
+    </style>
+    <div id="invoice-POS">
+    
+        <center id="top">
+          <!-- <div class="logo"></div> -->
+          <div class="info"> 
+            <h2 style="font-size: 18px;">companyname{{invoice.companyname}}</h2>
+            <p>companyname{{invoice.companyname}}</p>
+            <p>addressaddressaddressaddressaddressad dressaddressaddressaddressaddre ssaddressaddressaddressaddress{{invoice.address}}</p>
+            <p>country{{invoice.country}}</p>
+            <p>Phone No: {{invoice.companyphone}}</p>
+            <p>CIN: {{invoice.cin}}</p>
+            <p>GSTN: {{invoice.gstn}}</p>
+            <p>Reg. {{invoice.reg}}</p>
+          </div><!--End Info-->
+        </center><!--End InvoiceTop-->
+    
+        <center id="top">
+            <p><strong>{{invoice.shopname}}</strong></p>
+        </center>
+    
+        <center id="top">
+            <p><strong>[TAX-INVOICE]</strong></p>
+        </center>
+
+        <div id="mid">
+            <div class="info">
+                <table class="TableOrderDetails">
+                    <tr>
+                        <td class="mw-150">Order No.</td>
+                        <td>: {{invoice.orderdetail.orderno}}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="mw-150">Bill No.</td>
+                        <td>: {{invoice.orderdetail.billno}}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="mw-150">Order ID.</td>
+                        <td>: {{invoice.orderdetail.orderno}}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="mw-150">Mobile No.</td>
+                        <td>: {{invoice.orderdetail.mobile}}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="mw-150">Date</td>
+                        <td>: 07 2023 12:39:02</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div style="margin: 20px 0; display: block;"></div>
+        <div id="bot">
+            <div id="table">
+                <table>
+                    <tr class="tabletitle">
+                        <td class="item"><h2>Description</h2></td>
+                        <td class="Hours Qty"><h2>Qty</h2></td>
+                        <td class="RateTop text-center"><h2>Rate</h2></td>
+                        <td class="Amount text-center"><h2>Amount</h2></td>
+                    </tr>
+                    {{#each invoice.productdetail}}
+                    <tr class="service">
+                        <td class="tableitem"><p class="itemtext">{{this.description}}</p></td>
+                        <td class="tableitem Qty"><p class="itemtext">{{this.qty}}</p></td>
+                        <td class="tableitem text-center"><p class="itemtext">{{this.rate}}</p></td>
+                        <td class="tableitem text-center"><p class="itemtext">{{this.amount}}</p></td>
+                    </tr>
+                    {{/each}}
+                    <tr class="tabletitle">
+                      <td class="tableitem"><p class="itemtext">Total</p></td>
+                      <td></td>
+                      <td></td>
+                      <td class="payment"><h2>3,644.25.00</h2></td>
+                    </tr>
+                </table>
+                <table class="TableOrderDetails">
+                  <tr>
+                    <td>GST %(Base Amt)</td>
+                    <td class="text-center">CGST</td>
+                    <td class="text-center">SGST</td>
+                  </tr>
+                  <tr>
+                    <td>5% (195)</td>
+                    <td class="text-center">4.8</td>
+                    <td class="text-center">4.8</td>
+                  </tr>
+                </table>
+                <table class="TableOrderDetails linsbar">
+                  <tr>
+                    <td>Amount Including GST :</td>
+                    <td class="text-center">201.60</td>
+                  </tr>
+                  <tr>
+                    <td>Rounded Amount Recd. :</td>
+                    <td class="text-center">202.00</td>
+                  </tr>
+                </table>
+            </div>
+            <div id="top">
+              <p><strong>Customer Account</strong></p>
+              <p>Account No. <Span>C00021</Span></p>
+            </div>
+  
+            <div id="top">
+              <p><strong>Rupees Tow Hundred Tow Only</strong></p>
+              <table>
+                <tr>
+                  <td><p>Cashier Name : <span>Amarjeet</span></p></td>
+                  <td class="text-center"><p>E&OE</p></td>
+                </tr>
+              </table>
+            </div>
+  
+            <div id="top">
+              <p class="legal">Thanks For Visiting Haldiram's
+                Have a Nice Day
+                Now Buy Online At Haldiramonline.com
+                For Any Queries Call +917896451620
+                Between (11:00 AM to 05:00 PM)
+                On All Working Days
+              </p>
+            </div>
+  
+            <div id="top" style="margin-bottom: 40px; border-bottom: none !important;">
+              <h3 style="text-align: center;">Scan below QR to get bill info</h3>
+  
+              <div class="QrCode">
+                <img src="qrcode.jpeg" style="width: 250px;margin: auto;display: block;">
+              </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

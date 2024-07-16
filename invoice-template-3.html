@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        
+        @media (max-width: 600px) {
+            .container {
+                width: 100%;
+                padding: 0 10px;
+            }
+
+            h1 {
+                font-size: 18px;
+            }
+
+            th, td {
+                font-size: 16px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            h1 {
+                font-size: 16px;
+            }
+
+            th, td {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+
+<body style="font-family: sans-serif;">
+    <div class="container" style="width: 100%; max-width: 500px; margin: auto; font-size:0.5em">
+        <div>
+            <p style="text-align: center;"><img src="{{ invoice.logo }}" alt="Logo" style="max-width: 100%; height: auto;" /></p>
+        </div>
+        <div style="display: flex; justify-content: center; align-items: center; flex-direction: column; gap: 10px; margin-top: 15px;">
+            <h1 style="font-weight: normal; margin: 0px; text-align: center;">{{ invoice.companyname }}</h1>
+            <h1 style="font-weight: normal; margin: 0px; text-align: center;">{{ invoice.shopname }}</h1>
+            <h1 style="font-weight: normal; margin: 0px; text-align: center;">{{ invoice.address }}</h1>
+            <!-- <h1 style="font-weight: normal; margin: 0px; text-align: center;">Tulip Violet Sector - 69</h1> -->
+            <h1 style="font-weight: normal; margin: 0px; text-align: center;">{{ invoice.country }}</h1>
+            <h1 style="font-weight: normal; margin: 0px; text-align: center;">Phone No. {{invoice.companyphone}}</h1>
+            <h1 style="font-weight: normal; margin: 0px; text-align: center;">GSTIN: {{ invoice.gstn }}</h1>
+            <h1 style="font-weight: normal; margin: 0px; text-align: center;">FSSAI No. {{ invoice.reg }}</h1>
+        </div>
+        <div style="border-bottom: 4px dashed #000; margin-top: 30px"></div>
+        <h1 style="font-weight: normal; text-align: center;">[ Tax Invoice ]</h1>
+        <div style="border-bottom: 3px solid #000;"></div>
+        <div style="display: flex; align-items: center; justify-content: center;">
+            <!-- <h1 style="font-weight: 500;">TAKEAWAY</h1> -->
+        </div>
+
+        <div style="display: flex; text-align: center; align-items: center; justify-content: center;">
+            <table style="width:100%; border-collapse: collapse; margin: 20px 0px;" cellspacing="0" cellpadding="15">
+                <tbody>
+                    <tr>
+                        <th style="text-align:left;">
+                            <h1 style="font-weight: normal; margin: 0px;">Order No: {{ invoice.orderdetail.orderno }}</h1>
+                        </th>
+                        <th style="text-align:right;">
+                            <h1 style="font-weight: normal; margin: 0px;">Transaction ID: {{invoice.orderdetail.transactionNo }}</h1>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th style="text-align:left;">
+                            <h1 style="font-weight: normal; margin: 0px;">Invoice No: {{invoice.orderdetail.invoiceNo }}</h1>
+                        </th>
+                        <th style="text-align:right;">
+                            <h1 style="font-weight: normal; margin: 0px;">{{invoice.orderdetail.date }}</h1>
+                        </th>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div style="border-bottom: 3px dashed #000;"></div>
+
+        <div style="display: flex; text-align: center; align-items: center; justify-content: center;">
+                <table style="width:100%; border-collapse: collapse; margin: 20px 0px;" cellspacing="30" cellpadding="15">
+                    <tbody>
+                        <tr>
+                            <th style="text-align: left; width: 20%;">
+                                <h1 style="font-weight: 700; margin: 0px;font-size: 14px; ">S.NO</h1>
+                            </th>
+                            <th style="width: 30%; text-align: left; ">
+                                <h1 style="font-weight: 700; margin: 0px; font-size: 14px;">Product Description</h1>
+                            </th>
+                            <th style="width: 20%;">
+                                <h1 style="font-weight: 700; margin: 0px; font-size: 14px; ">Rate</h1>
+                            </th>
+                            <th style=" width: 20%;">
+                                <h1 style="font-weight: 700; margin: 0px;font-size: 14px;">Qty</h1>
+                            </th>
+                            <th style=" width: 10%;">
+                                <h1 style="font-weight: 700; margin: 0px;font-size: 14px;">Amount</h1>
+                            </th>
+                        </tr>
+                        {{#each invoice.productdetail}}
+                        <tr class="service">
+                            <td class="tableitem">{{ this.item_no }}</td>
+                            <td class="tableitem">
+                                <p class="itemtext">{{this.item_description}}</p>
+                            </td>
+                            <td class="tableitem text-center">
+                                <p class="itemtext">{{this.rate}}</p>
+                            </td>
+                            <td class="tableitem Qty">
+                                <p class="itemtext">{{this.quantity}}</p>
+                            </td>
+                            <td class="tableitem text-center">
+                                <p class="itemtext">{{this.amount}}</p>
+                            </td>
+                        </tr>
+                        {{/each}}
+                    <tr style="border-top: 3px dashed #000;">
+                        <td colspan="3" style="text-align: left;">
+                            <h1 style="font-weight: normal; margin: 0px;">Subtotal</h1>
+                        </td>
+                        <td style="text-align:center;">
+                            <h1 style="font-weight: normal; margin: 0px;">{{ invoice.itemCount }}</h1>
+                        </td>
+                        <td style="text-align:center;">
+                            <h1 style="font-weight: normal; margin: 0px;">{{ invoice.subTotalAmt }}</h1>
+                        </td>
+                    </tr>
+                    <tr style="text-align: left;">
+                        <td colspan="4">
+                            <h1 style="font-weight: normal; margin: 0px;">Discount Amount</h1>
+                        </td>
+                        <td style="text-align:center;">
+                            <h1 style="font-weight: normal; margin: 0px;">{{ invoice.discountAmt }}</h1>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="4" style="text-align: left;">
+                            <h1 style="font-weight: normal; margin: 0px;">GST Amount</h1>
+                        </td>
+                        <td style="text-align:center;">
+                            <h1 style="font-weight: normal; margin: 0px;">{{ invoice.gstAmt }}</h1>
+                        </td>
+                    </tr>
+                    <tr style="border-bottom: 3px dashed #000; margin: 30px 0px;">
+                        <td colspan="4" style="text-align: left;">
+                            <h1 style="margin: 0px;">Total</h1>
+                        </td>
+                        <td style="text-align: center;">
+                            <h1 style="margin: 0px;">{{ invoice.amount }}</h1>
+                        </td>
+                    </tr>
+                    {{#if invoice.cgst6 }}
+                    <tr>
+                        <td class="tableitem" style="text-align: left;" colspan="2">
+                            <p class="itemtext">12%</p>
+                        </td>
+                        <td class="tableitem text-center">
+                            <p class="itemtext">{{ invoice.cgst6 }}</p>
+                        </td>
+                        <td class="tableitem Qty">
+                            <p class="itemtext">{{ invoice.sgst6 }}</p>
+                        </td>
+                        <td class="tableitem text-center">
+                            <p class="itemtext">0</p>
+                        </td>
+                    </tr>
+                    {{/if}}
+                    {{#if invoice.cgst12 }}
+                    <tr>
+                        <td class="tableitem" style="text-align: left;" colspan="2">
+                            <p class="itemtext">24%</p>
+                        </td>
+                        <td class="tableitem text-center">
+                            <p class="itemtext">{{ invoice.cgst12 }}</p>
+                        </td>
+                        <td class="tableitem Qty">
+                            <p class="itemtext">{{ invoice.sgst12 }}</p>
+                        </td>
+                        <td class="tableitem text-center">
+                            <p class="itemtext">0</p>
+                        </td>
+                    </tr>
+                    {{/if}}
+                    {{#if invoice.cgst25 }}
+                    <tr>
+                        <td class="tableitem" style="text-align: left;" colspan="2">
+                            <p class="itemtext">5%</p>
+                        </td>
+                        <td class="tableitem text-center">
+                            <p class="itemtext">{{ invoice.cgst25 }}</p>
+                        </td>
+                        <td class="tableitem Qty">
+                            <p class="itemtext">{{ invoice.sgst25 }}</p>
+                        </td>
+                        <td class="tableitem text-center">
+                            <p class="itemtext">0</p>
+                        </td>
+                    </tr>
+                    {{/if}}
+                    {{#if invoice.cgst14 }}
+                    <tr>
+                        <td class="tableitem" style="text-align: left;" colspan="2">
+                            <p class="itemtext">28%</p>
+                        </td>
+                        <td class="tableitem text-center">
+                            <p class="itemtext">{{ invoice.cgst14 }}</p>
+                        </td>
+                        <td class="tableitem Qty">
+                            <p class="itemtext">{{ invoice.sgst14 }}</p>
+                        </td>
+                        <td class="tableitem text-center">
+                            <p class="itemtext">0</p>
+                        </td>
+                    </tr>
+                    {{/if}}
+
+                    <tr style="margin: 50px 0px; border-top: 3px dashed #000;">
+                        <td colspan="4" style="text-align: left;">
+                            <h1 style="font-weight: normal; margin: 0px;">Amount Recv.</h1>
+                        </td>
+                        <td style="text-align: center">
+                            <h1 style="font-weight: normal; margin: 0px;">{{ invoice.amount }}</h1>
+                        </td>
+                    </tr>
+                    <!-- <tr style="border-bottom: 3px dashed black;">
+                        <td colspan="4" style="text-align: left;">
+                            <h1 style="font-weight: normal; margin: 0px;">Change</h1>
+                        </td>
+                        <td style="text-align: center;">
+                            <h1 style="font-weight: normal; margin: 0px;">29.50</h1>
+                        </td>
+                    </tr> -->
+                    <tr>
+                        <td colspan="4" style="text-align: left;">
+                            <h1 style="font-weight: normal; margin: 0px;">Customer Name:</h1>
+                        </td>
+                        <td style="text-align: center;">
+                            <h1 style="font-weight: normal; margin: 0px;">{{ invoice.customer_name }}</h1>
+                        </td>
+                    </tr>
+                    <tr style="border-bottom: 3px dashed black; border-spacing: 10em;">
+                        <td colspan="4" style="text-align: left; margin:0px">
+                            <h1 style="font-weight: normal; margin: 0px;">Contact:</h1>
+                        </td>
+                        <td style="text-align: center;">
+                            <h1 style="font-weight: normal;">{{ invoice.customer_phone }}</h1>
+                        </td>
+                    </tr>
+                    <!-- <tr style="border-bottom: 3px dashed black;">
+                        <td colspan="4" style="text-align: left;">
+                            <h1 style="font-weight: normal; margin: 0px;">Cashier: Shaam</h1>
+                        </td>
+                        <td style="text-align: center;">
+                            <h1 style="font-weight: normal; margin: 0px;">8653</h1>
+                        </td>
+                    </tr> -->
+                </tbody>
+            </table>
+        </div>
+        <div style="text-align: center; margin-top: 40px; text-transform: uppercase;">
+            <h1 style="border-bottom: 4px double;padding: 13px;">THANK YOU FOR YOUR VISIT!</h1>
+            
+            <h2>{{ invoice.orderdetail.emailId }}</h2>
+            <h2>{{ invoice.orderdetail.websiteLink }}</h2>
+        </div>
+    </div>
+</body>
+
+</html>
